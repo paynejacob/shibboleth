@@ -15,9 +15,9 @@
         dest: /opt/shibboleth-idp/metadata/idp-metadata.xml
     - name: Copy attribute resolver
       template:
-        src: shibboleth/attribute-resolver.xml
+        src: shibboleth/attribute-resolver.xml.j2
         dest: /opt/shibboleth-idp/conf/attribute-resolver.xml
     - name: Copy attribute resolver ldap
       template:
-        src: shibboleth/attribute-resolver-ldap.xml
+        src: shibboleth/attribute-resolver-ldap.xml.j2
         dest: /opt/shibboleth-idp/conf/attribute-resolver-ldap.xml

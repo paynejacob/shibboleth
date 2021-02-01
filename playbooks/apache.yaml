@@ -7,8 +7,8 @@
     command: "a2enmod {{ modules }}"
     vars:
       modules:
-        - ssl
-        - pass
+        - "ssl"
+        - "pass"
   - name: Copy apache site
     template:
       src: apache/idp.conf.j2
