@@ -3,15 +3,15 @@
   vars:
     shibboleth_host: shibboleth.jpayne.do.rancher.space
   tasks:
+    - name: Set mysql user
+      mysql_user:
+        name: 'idp_admin'
+        password: 'rancher1'
+        priv: 'idp_db.*:SUPER'
+        host: localhost
+        state: present
     - name: create database
       mysql_db:
         name: idp_db
         target: tables.sql
         state: dump
-    - name: Set mysql user
-      mysql_user:
-        name: 'idp_admin'
-        password: 'rancher1'
-        priv: 'idp_db.SUPER'
-        host: localhost
-        state: present
