@@ -1,0 +1,13 @@
+- hosts: localhost
+  gather_facts: no
+  vars:
+    shibboleth_host: shibboleth.jpayne.do.rancher.space
+  tasks:
+    - name: Copy idp tomcat configuration
+      copy:
+        src: tomcat/idp.xml
+        dest: /etc/tomcat8/Catalina/localhost/idp.xml
+    - name: Copy tomcat server configuration
+      copy:
+        src: tomcat/server.xml
+        dest: /etc/tomcat8/server.xml

@@ -1,0 +1,21 @@
+- hosts: localhost
+  gather_facts: no
+  vars:
+    shibboleth_host: shibboleth.jpayne.do.rancher.space
+  tasks:
+    - name: Copy mysql table script
+        copy:
+          src: tables.sql
+          dest: /tmp/tables.sql
+    - name: Set mysql user
+      mysql_user:
+        name: 'idp_admin'
+        password: 'rancher1'
+        priv: 'dp_db.*'
+        host: localhost
+        state: present
+    - name: create database
+      mysql_db:
+        name: idp_db
+        target: /tmp/tables.sql
+        state: dump

@@ -1,0 +1,23 @@
+- hosts: localhost
+  gather_facts: no
+  vars:
+    # Shibboleth
+    shibboleth_host: shibboleth.jpayne.do.rancher.space
+    shibboleth_backchannelsigning_cert: ""
+    shibboleth_frontchannelsigning_cert: ""
+
+
+  # TODO: get certs from somewhere
+  tasks:
+    - name: Copy Shibboleth idp metadata
+      template:
+        src: shibboleth/idp-metadata.xml.j2
+        dest: /opt/shibboleth-idp/metadata/idp-metadata.xml
+    - name: Copy attribute resolver
+      template:
+        src: shibboleth/attribute-resolver.xml
+        dest: /opt/shibboleth-idp/conf/attribute-resolver.xml
+    - name: Copy attribute resolver ldap
+      template:
+        src: shibboleth/attribute-resolver-ldap.xml
+        dest: /opt/shibboleth-idp/conf/attribute-resolver-ldap.xml

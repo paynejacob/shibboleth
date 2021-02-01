@@ -1,0 +1,15 @@
+<VirtualHost *:443>
+  ServerName {{ shibboleth_host }}
+  ServerAdmin admin@{{ shibboleth_host }}
+  CustomLog /var/log/apache2/{{ shibboleth_host }}.access.log combined
+  ErrorLog /var/log/apache2/{{ shibboleth_host }}.error.log
+  SSLEngine On
+  SSLCipherSuite HIGH:MEDIUM:!aNULL:!kRSA:!MD5:!RC4
+  SSLProtocol all -SSLv2 -SSLv3
+  SSLCertificateKeyFile /opt/shibboleth-idp/credentials/idp-encryption.key
+  SSLCertificateFile /opt/shibboleth-idp/credentials/idp-encryption.crt
+  ProxyPass /idp/ ajp://localhost:8009/idp/ retry=5
+  <Proxy ajp://localhost:8009/idp/*>
+    Require all granted
+  </Proxy>
+</VirtualHost>

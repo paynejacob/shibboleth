@@ -1,0 +1,17 @@
+- hosts: localhost
+  gather_facts: no
+  vars:
+    shibboleth_host: shibboleth.jpayne.do.rancher.space
+  tasks:
+  - name: Enable apache modules
+    command: "a2enmod {{ modules }}"
+    vars:
+      modules:
+        - ssl
+        - pass
+  - name: Copy apache site
+    template:
+      src: apache/idp.conf.j2
+      dest: /etc/apache2/sites-available/idp.conf
+  - name: Enable site
+    command: "a2ensite idp"

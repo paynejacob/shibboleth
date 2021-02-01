@@ -1,0 +1,29 @@
+- hosts: localhost
+  gather_facts: no
+  roles:
+    - infopen.openjdk-jre
+  vars:
+    # jdk
+    ansible_os_family: "Debian"
+    ansible_distribution: "Ubuntu"
+    ansible_distribution_release: "18.04"
+    openjdk_jre_version: "11"
+  tasks:
+    - name: Update APT package cache
+      apt:
+        update_cache: yes
+        cache_valid_time: 3600
+    - name: Installing Packages
+      apt:
+        state: present
+        name: "{{ packages }}"
+      vars:
+        packages:
+          - apache2
+          - mysql-client
+          - mysql-server
+          - tomcat8
+    - name: Extract Package
+      unarchive:
+        src: shibboleth-identity-provider-4.0.1.tar.gz
+        dest: /tmp
