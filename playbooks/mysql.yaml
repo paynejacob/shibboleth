@@ -3,10 +3,6 @@
   vars:
     shibboleth_host: shibboleth.jpayne.do.rancher.space
   tasks:
-    - name: Copy mysql table script
-        copy:
-          src: tables.sql
-          dest: /tmp/tables.sql
     - name: Set mysql user
       mysql_user:
         name: 'idp_admin'
@@ -17,5 +13,5 @@
     - name: create database
       mysql_db:
         name: idp_db
-        target: /tmp/tables.sql
+        target: tables.sql
         state: dump
