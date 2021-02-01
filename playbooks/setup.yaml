@@ -23,6 +23,7 @@
           - mysql-client
           - mysql-server
           - tomcat8
+          - python-pip
     - name: Install Pip packages
       pip:
         name: pip install mysql-connector-python
