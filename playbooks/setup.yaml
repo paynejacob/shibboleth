@@ -23,7 +23,7 @@
           - mysql-client
           - mysql-server
           - tomcat8
-          - mysql-python
+          - mysql-connector-python
     - name: Extract Package
       unarchive:
         src: shibboleth-identity-provider-4.0.1.tar.gz
