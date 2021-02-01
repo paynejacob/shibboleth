@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+apt update
+apt install ansible
+
+ansible-galaxy install -r requirements.yaml
+
 ansible-playbook playbooks/setup.yaml
 
 pushd /tmp/shibboleth-identity-provider-4.0.1 || exit
