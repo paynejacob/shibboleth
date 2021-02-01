@@ -25,6 +25,9 @@
           - tomcat8
           - python-pip
           - python-mysqldb
+    - name: Install Pip packages
+      pip:
+        name: pip install MySQL-python
     - name: Extract Package
       unarchive:
         src: shibboleth-identity-provider-4.0.1.tar.gz
