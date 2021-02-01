@@ -3,14 +3,14 @@
   vars:
     shibboleth_host: shibboleth.jpayne.do.rancher.space
   tasks:
-  - name: Enable apache modules
+  - name: Enable ssl apache module
     apache2_module:
-      name: "{{ modules }}"
+      name: ssl
       state: present
-    vars:
-      modules:
-        - "ssl"
-        - "pass"
+  - name: Enable proxy apache module
+    apache2_module:
+      name: proxy
+      state: present
   - name: Copy apache site
     template:
       src: apache/idp.conf.j2
