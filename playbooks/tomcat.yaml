@@ -3,6 +3,11 @@
   vars:
     shibboleth_host: shibboleth.jpayne.do.rancher.space
   tasks:
+    - name: Change permissions
+      file:
+        path: /opt/shibboleth-idp
+        owner: tomcat8
+        group: tomcat8
     - name: Copy idp tomcat configuration
       template:
         src: tomcat/idp.xml.j2
