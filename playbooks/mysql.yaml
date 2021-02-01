@@ -14,4 +14,4 @@
       mysql_db:
         name: idp_db
         target: tables.sql
-        state: dump
+        state: present
