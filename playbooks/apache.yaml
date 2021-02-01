@@ -4,7 +4,9 @@
     shibboleth_host: shibboleth.jpayne.do.rancher.space
   tasks:
   - name: Enable apache modules
-    command: "a2enmod {{ modules }}"
+    apache2_module:
+      name: "{{ modules }}"
+      state: present
     vars:
       modules:
         - "ssl"
